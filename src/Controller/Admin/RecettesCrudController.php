@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -22,6 +23,7 @@ class RecettesCrudController extends AbstractCrudController
     {
         return [
             TextField::new('Titre'),
+            SlugField::new('slug')->setTargetFieldName('Titre'),
             TextEditorField::new('Description'),
             NumberField::new('TempsDePreparation'),
             NumberField::new('TempsDeRepos'),

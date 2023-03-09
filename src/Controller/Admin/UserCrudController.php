@@ -44,8 +44,6 @@ class UserCrudController extends AbstractCrudController
           $password = TextField::new('password', 'Mot de passe (crypté BDD, algo : bcrypt)')
           ->setFormType(PasswordType::class)      
           ->onlyOnForms(),
-         
-          
           AssociationField::new('allerg','Allergenes'),
           AssociationField::new('Regimes','Regimes'),
 

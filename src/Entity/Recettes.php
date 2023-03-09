@@ -46,6 +46,9 @@ class Recettes
     #[ORM\Column(nullable: true)]
     private ?bool $Patients = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->Listes_des_allergenes = new ArrayCollection();
@@ -197,6 +200,18 @@ class Recettes
     public function setPatients(?bool $Patients): self
     {
         $this->Patients = $Patients;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
