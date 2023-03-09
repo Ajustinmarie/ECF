@@ -92,9 +92,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Allergenes::class, inversedBy: 'users')]
     private Collection $allerg;
 
+    #[ORM\ManyToMany(targetEntity: Regime::class, inversedBy: 'users')]
+    private Collection $Regimes;
+
     public function __construct()
     {
         $this->allerg = new ArrayCollection();
+        $this->Regimes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -186,174 +190,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getAllergenes1(): ?string
-    {
-        return $this->allergenes_1;
-    }
 
-    public function setAllergenes1(?string $allergenes_1): self
-    {
-        $this->allergenes_1 = $allergenes_1;
-
-        return $this;
-    }
-
-    public function getAllergenes2(): ?string
-    {
-        return $this->allergenes_2;
-    }
-
-    public function setAllergenes2(?string $allergenes_2): self
-    {
-        $this->allergenes_2 = $allergenes_2;
-
-        return $this;
-    }
-
-    public function getAllergenes3(): ?string
-    {
-        return $this->allergenes_3;
-    }
-
-    public function setAllergenes3(?string $allergenes_3): self
-    {
-        $this->allergenes_3 = $allergenes_3;
-
-        return $this;
-    }
-
-    public function getAllergenes4(): ?string
-    {
-        return $this->allergenes_4;
-    }
-
-    public function setAllergenes4(?string $allergenes_4): self
-    {
-        $this->allergenes_4 = $allergenes_4;
-
-        return $this;
-    }
-
-    public function getAllergenes5(): ?string
-    {
-        return $this->allergenes_5;
-    }
-
-    public function setAllergenes5(?string $allergenes_5): self
-    {
-        $this->allergenes_5 = $allergenes_5;
-
-        return $this;
-    }
-
-    public function getAllergenes6(): ?string
-    {
-        return $this->allergenes_6;
-    }
-
-    public function setAllergenes6(?string $allergenes_6): self
-    {
-        $this->allergenes_6 = $allergenes_6;
-
-        return $this;
-    }
-
-    public function getAllergenes7(): ?string
-    {
-        return $this->allergenes_7;
-    }
-
-    public function setAllergenes7(?string $allergenes_7): self
-    {
-        $this->allergenes_7 = $allergenes_7;
-
-        return $this;
-    }
-
-    public function getAllergenes8(): ?string
-    {
-        return $this->allergenes_8;
-    }
-
-    public function setAllergenes8(?string $allergenes_8): self
-    {
-        $this->allergenes_8 = $allergenes_8;
-
-        return $this;
-    }
-
-    public function getAllergenes9(): ?string
-    {
-        return $this->allergenes_9;
-    }
-
-    public function setAllergenes9(?string $allergenes_9): self
-    {
-        $this->allergenes_9 = $allergenes_9;
-
-        return $this;
-    }
-
-    public function getAllergenes10(): ?string
-    {
-        return $this->allergenes_10;
-    }
-
-    public function setAllergenes10(?string $allergenes_10): self
-    {
-        $this->allergenes_10 = $allergenes_10;
-
-        return $this;
-    }
-
-    public function getAllergenes11(): ?string
-    {
-        return $this->allergenes_11;
-    }
-
-    public function setAllergenes11(?string $allergenes_11): self
-    {
-        $this->allergenes_11 = $allergenes_11;
-
-        return $this;
-    }
-
-    public function getAllergenes12(): ?string
-    {
-        return $this->allergenes_12;
-    }
-
-    public function setAllergenes12(?string $allergenes_12): self
-    {
-        $this->allergenes_12 = $allergenes_12;
-
-        return $this;
-    }
-
-    public function getAllergenes13(): ?string
-    {
-        return $this->allergenes_13;
-    }
-
-    public function setAllergenes13(?string $allergenes_13): self
-    {
-        $this->allergenes_13 = $allergenes_13;
-
-        return $this;
-    }
-
-    public function getAllergenes14(): ?string
-    {
-        return $this->allergenes_14;
-    }
-
-    public function setAllergenes14(?string $allergenes_14): self
-    {
-        $this->allergenes_14 = $allergenes_14;
-
-        return $this;
-    }
-
+  
     public function getRegimes1(): ?string
     {
         return $this->Regimes_1;
@@ -446,6 +284,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeAllerg(Allergenes $allerg): self
     {
         $this->allerg->removeElement($allerg);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Regime>
+     */
+    public function getRegimes(): Collection
+    {
+        return $this->Regimes;
+    }
+
+    public function addRegime(Regime $regime): self
+    {
+        if (!$this->Regimes->contains($regime)) {
+            $this->Regimes->add($regime);
+        }
+
+        return $this;
+    }
+
+    public function removeRegime(Regime $regime): self
+    {
+        $this->Regimes->removeElement($regime);
 
         return $this;
     }

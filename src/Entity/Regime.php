@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\AllergenesRepository;
+use App\Repository\RegimeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: AllergenesRepository::class)]
-class Allergenes
+#[ORM\Entity(repositoryClass: RegimeRepository::class)]
+class Regime
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,12 +16,12 @@ class Allergenes
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Nom = null;
+    private ?string $Name = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'allerg')]
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'Regimes')]
     private Collection $users;
 
-    #[ORM\ManyToMany(targetEntity: Recettes::class, mappedBy: 'Listes_des_allergenes')]
+    #[ORM\ManyToMany(targetEntity: Recettes::class, mappedBy: 'Liste_de_regimes')]
     private Collection $recettes;
 
     public function __construct()
@@ -35,19 +35,21 @@ class Allergenes
         return $this->id;
     }
 
-    public function getNom(): ?string
-    {
-        return $this->Nom;
-    }
 
     public function __toString()
     {
-        return $this->Nom;
+        return $this->Name;
     }
 
-    public function setNom(string $Nom): self
+
+    public function getName(): ?string
     {
-        $this->Nom = $Nom;
+        return $this->Name;
+    }
+
+    public function setName(string $Name): self
+    {
+        $this->Name = $Name;
 
         return $this;
     }
@@ -64,7 +66,7 @@ class Allergenes
     {
         if (!$this->users->contains($user)) {
             $this->users->add($user);
-            $user->addAllerg($this);
+            $user->addRegime($this);
         }
 
         return $this;
@@ -73,7 +75,7 @@ class Allergenes
     public function removeUser(User $user): self
     {
         if ($this->users->removeElement($user)) {
-            $user->removeAllerg($this);
+            $user->removeRegime($this);
         }
 
         return $this;
@@ -91,7 +93,7 @@ class Allergenes
     {
         if (!$this->recettes->contains($recette)) {
             $this->recettes->add($recette);
-            $recette->addListesDesAllergene($this);
+            $recette->addListeDeRegime($this);
         }
 
         return $this;
@@ -100,7 +102,7 @@ class Allergenes
     public function removeRecette(Recettes $recette): self
     {
         if ($this->recettes->removeElement($recette)) {
-            $recette->removeListesDesAllergene($this);
+            $recette->removeListeDeRegime($this);
         }
 
         return $this;

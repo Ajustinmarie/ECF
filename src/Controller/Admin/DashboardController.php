@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Allergenes;
+use App\Entity\Recettes;
+use App\Entity\Regime;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -46,6 +48,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Création Patient', 'fas fa-list', User::class);
         yield MenuItem::linkToCrud('Liste des allergènes', 'fas fa-list', Allergenes::class);
+        yield MenuItem::linkToCrud('Type de Régime', 'fas fa-list', Regime::class);
+        yield MenuItem::linkToCrud('Liste des recettes', 'fas fa-list', Recettes::class);
     }
 }
 

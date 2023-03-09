@@ -47,25 +47,9 @@ class UserCrudController extends AbstractCrudController
          
           
           AssociationField::new('allerg','Allergenes'),
-          TextField::new('allergenes_2','Allergenes'),
-          TextField::new('allergenes_3','Allergenes'),
-          TextField::new('allergenes_4','Allergenes'),
-          TextField::new('allergenes_5','Allergenes'),
-          TextField::new('allergenes_6','Allergenes'),
-          TextField::new('allergenes_7','Allergenes'),
-          TextField::new('allergenes_8','Allergenes'),
-          TextField::new('allergenes_9','Allergenes'),
-          TextField::new('allergenes_10','Allergenes'),
-          TextField::new('allergenes_11','Allergenes'),
-          TextField::new('allergenes_12','Allergenes'),
-          TextField::new('allergenes_13','Allergenes'),
-          TextField::new('allergenes_14','Allergenes'),
-          TextField::new('Regimes1','Regime'),
-          TextField::new('Regimes2','Regime'),
-          TextField::new('Regimes3','Regime'),
-          TextField::new('Regimes4','Regime'),
-          TextField::new('Regimes5','Regime'),
-          TextField::new('Regimes6','Regime'),
+          AssociationField::new('Regimes','Regimes'),
+
+
 
          
            // yield TextField::new('plainPassword')->onlyOnForms()->setFormTypeOption('empty_data', ''),
