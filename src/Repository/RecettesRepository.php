@@ -39,6 +39,46 @@ class RecettesRepository extends ServiceEntityRepository
         }
     }
 
+
+    public function findWithPatient()
+    {
+         $query= $this
+         ->createQueryBuilder('r') 
+         ->andWhere('r.Patients = :val') 
+         ->setParameter('val', 1);
+
+         return  $query->getQuery()->getResult();         
+
+    }
+
+    public function findWithPersonalise()
+    {
+         $query= $this
+         ->createQueryBuilder('r') 
+         ->select('c','p')
+         
+         ->andWhere('r.Patients = :val') 
+         ->setParameter('val', 1);
+
+         return  $query->getQuery()->getResult();         
+
+    }
+
+
+
+    public function findWithAllergenes()
+    {
+         $query= $this
+         ->createQueryBuilder('recettes_allergenes') 
+         ->select('recettes_id','allergenes_id')
+         
+         ->andWhere('allergenes_id = :val') 
+         ->setParameter('val', 3);
+
+         return  $query->getQuery()->getResult();         
+
+    }
+
 //    /**
 //     * @return Recettes[] Returns an array of Recettes objects
 //     */
