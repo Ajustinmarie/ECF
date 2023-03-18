@@ -36,6 +36,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Regime::class, inversedBy: 'users')]
     private Collection $Regimes;
 
+    #[ORM\Column(length: 255)]
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $prenom = null;
+
     public function __construct()
     {
         $this->allerg = new ArrayCollection();
@@ -175,6 +181,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeRegime(Regime $regime): self
     {
         $this->Regimes->removeElement($regime);
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
 
         return $this;
     }

@@ -13,30 +13,33 @@
 
   <hr class="featurette-divider">
 
-        {% for regime in regimes %}
+        {% for recette in recettes %}
 
 
         <div class="row featurette">
 
             <div class="col-md-7">
 
-                    <a href="{{path('app_recette_personnalise',{'id':regime.id})}}"><h2 class="featurette-heading">{{regime.titre}}</h2></a>
-                    <p class="lead">{{regime.description}}...</p>
-                    <p class="lead">Temps de préparation: {{regime.temps_de_preparation}} Minutes</p>
-                    <p class="lead">Temps de cuisson: {{regime.temps_de_cuisson}} Minutes</p>
-                    <p class="lead">Ingrédient: {{regime.ingedrients}} Minutes</p>
-                    <p class="lead">Etapes: <br/> {{regime.etapes}}...</p>
-                    <p class="lead">Temps de repos: {{regime.temps_de_repos}} Minutes</p>
+                    <h2 class="featurette-heading">{{recette.titre}}</h2>
+                    <p class="lead">{{recette.description}}</p>
+                    <p class="lead">Temps de préparation: {{recette.temps_de_preparation}} Minutes</p>
+                    <p class="lead">Temps de cuisson: {{recette.temps_de_cuisson}} Minutes</p>
+                    <p class="lead">Ingrédient: {{recette.ingedrients}} Minutes</p>
+                    <p class="lead">Etapes: <br/> {{recette.etapes}}</p>
+                    <p class="lead">Temps de repos: {{recette.temps_de_repos}} Minutes</p>
               
               
- 
-                      
+                     <p class="lead">Allergenes spécifiques <br/>                     
+                     {% for allergene in allergenes %}                     
+                     {{allergene.nom}}                     
+                     {% endfor %}
+                     
                      
                      </p>
             </div>
 
             <div class="col-md-5">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="250" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
             </div>
 
 
@@ -46,6 +49,9 @@
 
 
         {% endfor %}
+
+
+
 
 
        
