@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Commentaire;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Recettes;
+use App\Form\FormCommentairesType;
+use Symfony\Component\HttpFoundation\Request;
 
 class RecettePersonnaliseController extends AbstractController
 {
@@ -22,7 +25,7 @@ class RecettePersonnaliseController extends AbstractController
 
 
     #[Route('/recette/personnalise', name: 'app_recette_personnalise')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
        
        
@@ -34,14 +37,37 @@ class RecettePersonnaliseController extends AbstractController
         $id_user=$user->getId();
         $allergenes=$this->entityManager->getRepository(Recettes::class)->findAllRegimeRecette_Allergenes($id_recette, $id_user);
 
+         $commentaires=new Commentaire();
+         $form=$this->createForm(FormCommentairesType::class, $commentaires);
+
+         $form->handlerequest($request);
+        
+
+         if($form->isSubmitted() && $form->isValid())
+         {    
+                $commentaires->setUserId($id_user);
+                $commentaires->setRecetteId($id_recette);
+                $products=$this->entityManager->persist($commentaires);
+                $this->entityManager->flush();  
+         }
 
 
+     $commentaire_lectures=$this->entityManager->getRepository(Commentaire::class)->findCommentairesPerRecette($id_recette);
 
 
+   
 
         return $this->render('recette_personnalise/index.html.twig', [
             'recettes' =>$recettes,
-            'allergenes'=>$allergenes
+            'allergenes'=>$allergenes,
+            'form'=>$form->createView(),
+            'commentaire_lectures'=>$commentaire_lectures
         ]);
     }
+
+
+
+
+
+    
 }

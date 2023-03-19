@@ -39,6 +39,27 @@ class CommentaireRepository extends ServiceEntityRepository
         }
     }
 
+
+    public function findCommentairesPerRecette($id_recette): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT  us.id,
+        com.commentaire,
+        us.nom,
+        us.prenom,
+        com.note
+        FROM 
+        commentaire AS com, 
+        user AS us
+        WHERE com.recette_id=1
+        AND us.id=com.user_id";      
+      
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
 //    /**
 //     * @return Commentaire[] Returns an array of Commentaire objects
 //     */
