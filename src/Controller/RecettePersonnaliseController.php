@@ -61,13 +61,56 @@ class RecettePersonnaliseController extends AbstractController
             'recettes' =>$recettes,
             'allergenes'=>$allergenes,
             'form'=>$form->createView(),
-            'commentaire_lectures'=>$commentaire_lectures
+            'commentaire_lectures'=>$commentaire_lectures,
+            'recettes_id'=>$recettes_id
         ]);
     }
 
 
 
+         /*route utilisation de ajax */
+
+        #[Route('/recette/personnalise/recharge', name: 'app_commentaire_recharge')]
+        public function show(): Response
+        {
 
 
-    
+            $user=$this->getUser();
+
+
+            $id_recette=$_GET['id']; 
+            $id_user=$user->getId();
+
+            $commentaires=new Commentaire();
+            $form=$this->createForm(FormCommentairesType::class, $commentaires);
+
+         //   $form->handlerequest($request);
+            
+
+       /*
+            if($form->isSubmitted() && $form->isValid())
+            {    
+                    $commentaires->setUserId($id_user);
+                    $commentaires->setRecetteId($id_recette);
+                    $products=$this->entityManager->persist($commentaires);
+                    $this->entityManager->flush();  
+            }
+        */
+     
+
+        $commentaire_lectures=$this->entityManager->getRepository(Commentaire::class)->findCommentairesPerRecette($id_recette);
+        $id_recette=1; 
+
+            return $this->render('recette_personnalise/commentaire_page.html.twig', [
+                'form'=>$form->createView(),
+                'commentaire_lectures'=>$commentaire_lectures,
+                'id_recette'=>$id_recette
+            ]);
+        }
+
+
+
+
+
+
 }

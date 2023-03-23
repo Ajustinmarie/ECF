@@ -30,7 +30,8 @@ class FormCommentairesType extends AbstractType
                 
             ->add('note')
             ->add('submit', SubmitType::class, [
-                'label' => "Poster le commentaire"
+                'label' => "Poster le commentaire",
+                'attr' => ['id' => 'bouton_envoie_commentaire']
             ])
         ;
     }
