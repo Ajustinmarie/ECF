@@ -23,16 +23,16 @@ class Recettes
     private ?string $description = null;
 
     #[ORM\Column]
-    private ?int $temps_de_preparation = null;
+    public ?int $temps_de_preparation = null;
 
     #[ORM\Column]
-    private ?int $temps_de_cuisson = null;
+    public ?int $temps_de_cuisson = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $ingedrients = null;
+    public ?string $ingedrients = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $etapes = null;
+    public ?string $etapes = null;
 
     #[ORM\ManyToMany(targetEntity: Allergenes::class, inversedBy: 'recettes')]
     private Collection $Listes_des_allergenes;
@@ -41,13 +41,16 @@ class Recettes
     private Collection $Liste_de_regimes;
 
     #[ORM\Column]
-    private ?int $Temps_de_repos = null;
+    public ?int $Temps_de_repos = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $Patients = null;
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $illustration = null;
 
     public function __construct()
     {
@@ -212,6 +215,18 @@ class Recettes
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getIllustration(): ?string
+    {
+        return $this->illustration;
+    }
+
+    public function setIllustration(string $illustration): self
+    {
+        $this->illustration = $illustration;
 
         return $this;
     }

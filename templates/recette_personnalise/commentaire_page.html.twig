@@ -1,21 +1,24 @@
+
+
 {% extends 'base.html.twig.html' %}
 
 
 {% block content %}
 
-            {{form(form)}}
+          <!--  {{form(form)}} -->
 
-              <hr class="featurette-divider">       
+         <p style="font-size:3em;color:green"> commentaire posté merci !</p>
 
 
+<br/>
 
 <h3>Section Commentaires</h3>
-<p>jjuju</p>
+
  {% for commentaire_lecture in commentaire_lectures %}
 
     <p>{{commentaire_lecture.nom}} {{commentaire_lecture.prenom}} | Numero patient: {{commentaire_lecture.id}} | Note recette: {{commentaire_lecture.note}} / 20 </p>
     <p>{{commentaire_lecture.commentaire}}</p>
-
+   
 
 {% endfor %}
 
@@ -23,4 +26,9 @@
 
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 
+
+
 {% endblock %}
+
+
+

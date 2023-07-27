@@ -6,6 +6,7 @@ use App\Entity\Recettes;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -33,6 +34,13 @@ class RecettesCrudController extends AbstractCrudController
             AssociationField::new('Listes_des_allergenes','Allergenes'),
             AssociationField::new('Liste_de_regimes','Regimes'),
             BooleanField::new('Patients')->renderAsSwitch(false),
+             ImageField::new('illustration')
+                ->setBasePath('public/uploads')
+                ->setUploadDir('public/uploads')
+                ->setUploadedFileNamePattern('[randomhash].[extension]')
+                ->setRequired(false),
+            // ImageField::new('')->setBasePath('')
+
           
         ];
     }

@@ -23,26 +23,41 @@
 
             <div class="col-md-7">
 
-                    <h2 class="featurette-heading">{{recette.titre}}</h2>
-                    <p class="lead">{{recette.description}}</p>
-                    <p class="lead">Temps de préparation: {{recette.temps_de_preparation}} Minutes</p>
+                    <h2 class="featurette">Titre: {{recette.titre}}</h2>
+                    <p class="lead">Desccription: {{recette.description|raw}} </p>
+                   <p class="lead">Temps de préparation: {{recette.temps_de_preparation}} Minutes</p>
                     <p class="lead">Temps de cuisson: {{recette.temps_de_cuisson}} Minutes</p>
-                    <p class="lead">Ingrédient: {{recette.ingedrients}} Minutes</p>
-                    <p class="lead">Etapes: <br/> {{recette.etapes}}</p>
-                    <p class="lead">Temps de repos: {{recette.temps_de_repos}} Minutes</p>
+                    <p class="lead">Ingrédient: {{recette.ingedrients|raw}} Minutes</p>
+                    <p class="lead">Etapes: <br/> {{recette.etapes|raw}}</p>
+                    <p class="lead">Temps de repos: {{recette.temps_de_repos}} Minutes</p> 
               
               
-                     <p class="lead">Allergenes spécifiques <br/>                     
+                     <p class="lead">Allergenes spécifiques <br/>  
+
+                    {% if allergenes==null  %}
+                    
+                    <p class="lead" >Vous n'avez aucun allergenes</p>
+
+                    {% else %}
+
                      {% for allergene in allergenes %}                     
                      {{allergene.nom}}                     
                      {% endfor %}
+
+
+                    {% endif %}
+
+                    
+
+                   
                      
                      
                      </p>
             </div>
 
-            <div class="col-md-5">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+            <div class="col-md-5">                
+                  <img class="img_recette" style="height:300px" src="../uploads/{{recette.illustration}}" alt="" class="img-fluid"/>
+                 
             </div>
 
 
@@ -57,50 +72,41 @@
 
           <!--  {{form(form)}} -->
 
+
+
           
 
 
 <div id="update_com">
-            
-                            <input type="textarea" name="commentaire"/>
-                            <input type="number" name="note"/>   
+                        <div id="conteneur_poste" >
+
+                                 <div class="contenu_poste">
+                                 <p> Note <br/>
+                                 <input type="number" style="width:50px;"  min="1" max="20" name="note"/>/20 </p>
+                                 </div>
+
+                                 <div class="contenu_poste ">
+                                 <p> Commentaire<br/>
+                                 <input type="textarea" style="width:700px; height:300px" class="taille_1" name="commentaire"/></p>
+                                 </div>
+
+                     
+
+                                  <div class="contenu_poste"> <button class="envoie" >Poster</button></div>
+
+                        </div>
+
 
                             <input type="hidden" name="id_recette" value="{{recettes_id}}"/>  
 
-                            <input type="hidden" name="id_user" value="{{app.user.id}}" />                     
-                            <button class="envoie" >fdsfdf</button>
+                            <input type="hidden" id="id_user" name="id_user" value="{{app.user.id}}" />                     
+                           
 
-
-                            <hr class="featurette-divider">       
-
-                <!--
-                        <div class="row featurette">
-                            <div class="col-md-7 order-md-2">
-                                <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-                                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-                            </div>
-                            <div class="col-md-5 order-md-1">
-                                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-                            </div>
-                        </div>
-
-                        <hr class="featurette-divider">
-
-                        <div class="row featurette">
-                            <div class="col-md-7">
-                                <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-                                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-                            </div>
-                            <div class="col-md-5">
-                                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-                            </div>
-                        </div>
-
-                        <hr class="featurette-divider">
-                -->
+                            <hr class="featurette-divider">   
+            
 
                 <h3>Section Commentaires</h3>
-
+      
                 {% for commentaire_lecture in commentaire_lectures %}
 
                     <p>{{commentaire_lecture.nom}} {{commentaire_lecture.prenom}} | Numero patient: {{commentaire_lecture.id}} | Note recette: {{commentaire_lecture.note}} / 20 </p>
@@ -123,13 +129,15 @@
 
                 {% endfor %}
 
+             
+
 
  </div>
 
 
 
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
- <script src="{{asset('assets/js/charge_commentaire.js')}}" async></script> 
+    <script src="{{asset('assets/js/charge_commentaire.js')}}" async></script> 
 
 
 {% endblock %}

@@ -87,7 +87,8 @@ class RecettesRepository extends ServiceEntityRepository
         rc.temps_de_cuisson,
         rc.ingedrients,
         rc.etapes,
-        rc.temps_de_repos
+        rc.temps_de_repos,
+        rc.illustration
         FROM 
         user_regime AS ur, 
         recettes_regime AS rr,  

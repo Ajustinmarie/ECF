@@ -15,22 +15,22 @@
    
         <div class="row">
             <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-                <h2>Heading</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                 <img class="radius" style="border-radius:25% 10%;height:140px;" src="{{asset('assets/img/hd-wallpaper-1.jpg')}}" alt="">
+                <h2>Salade de quinoa</h2>
+                <p>Cette salade de quinoa aux légumes grillés est une option saine et équilibrée pour un repas léger. Elle est riche en fibres, en vitamines et en minéraux essentiels. Vous pouvez également ajouter des protéines supplémentaires en incluant du poulet grillé ou des pois chiches. Profitez de cette recette délicieuse tout en respectant votre régime alimentaire équilibré.</p>
+               
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-                <h2>Heading</h2>
-                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                  <img class="radius" style="border-radius:25% 10%;height:140px;" src="{{asset('assets/img/hd-wallpaper.jpg')}}" alt="">
+                <h2>Poulet aux légumes</h2>
+                <p>Ce délicieux poulet aux légumes sautés est une option saine et équilibrée pour un repas. Il est riche en protéines maigres, en fibres et en vitamines. Vous pouvez le servir tel quel ou l'accompagner de riz brun ou de quinoa pour une portion de glucides sains. Profitez de ce plat savoureux tout en prenant soin de votre alimentation équilibrée.</p>
+               
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-                <h2>Heading</h2>
+               <img class="radius" style="border-radius:25% 10%;height:140px;" src="{{asset('assets/img/3.jpg')}}" alt="">
+                <h2>Poisson en papillote </h2>
                 <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+             
             </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
 
@@ -38,16 +38,18 @@
         <!-- START THE FEATURETTES -->
 
         <hr class="featurette-divider">
+       
+     <div id="centre_titre"  style="text-align:center"> <h1>Recettes génériques</h1> <br/> </div>
 
     {% for recette in recettes  %}
 
         <div class="row featurette">               
             <div class="col-md-7">
-                <h2 class="featurette-heading">{{recette.titre}}<span class="text-muted">fgrezfzerferf</span></h2>
-                <p class="lead">{{recette.description}}</p>
+                <h2 class="featurette"><a href="{{path('home_controller_detail_recettes', { 'id' : recette.id }) }}">{{recette.titre}}</a></h2>
+                <p class="lead">Description: {{recette.description|raw}}</p>
             </div>
             <div class="col-md-5">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="250" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+                 <img class="img_recette" style="height:300px" src="/uploads/{{recette.illustration}}"/>
             </div>
         </div>
     <hr class="featurette-divider">

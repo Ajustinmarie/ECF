@@ -20,12 +20,20 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(): Response
     {
+                $recettes=$this->entityManager->getRepository(Recettes::class)->findWithPatient();
+            //   dd($recettes);
+                return $this->render('home/index.html.twig',[
+                    'recettes'=>$recettes
+                ]);
+    }
 
-         $recettes=$this->entityManager->getRepository(Recettes::class)->findWithPatient();
 
+    #[Route('/home/detail/recettes/{id}', name: 'home_controller_detail_recettes')]
+    public function Show_detail($id): Response
+    {        
+        $recettes=$this->entityManager->getRepository(Recettes::class)->findOneById($id);
       //   dd($recettes);
-
-        return $this->render('home/index.html.twig',[
+        return $this->render('home/homeDetail.html.twig',[
             'recettes'=>$recettes
         ]);
     }

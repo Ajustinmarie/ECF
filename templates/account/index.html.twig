@@ -16,27 +16,26 @@
         {% for regime in regimes %}
 
 
-        <div class="row featurette">
+        <div class="row ">
 
             <div class="col-md-7">
-
-                    <a href="{{path('app_recette_personnalise',{'id':regime.id})}}"><h2 class="featurette-heading">{{regime.titre}}</h2></a>
-                    <p class="lead">{{regime.description}}...</p>
-                    <p class="lead">Temps de préparation: {{regime.temps_de_preparation}} Minutes</p>
+                    <a href="{{path('app_recette_personnalise',{'id':regime.id})}}"><h2 class="featurette">{{regime.titre}}</h2></a>
+                    <p class="lead">Desccription: {{regime.description|raw}}</p>
+                  <!--  <p class="lead">Temps de préparation: {{regime.temps_de_preparation}} Minutes</p>
                     <p class="lead">Temps de cuisson: {{regime.temps_de_cuisson}} Minutes</p>
-                    <p class="lead">Ingrédient: {{regime.ingedrients}} Minutes</p>
-                    <p class="lead">Etapes: <br/> {{regime.etapes}}...</p>
-                    <p class="lead">Temps de repos: {{regime.temps_de_repos}} Minutes</p>
+                    <p class="lead">Ingrédient: {{regime.ingedrients|raw}}</p>
+                    <p class="lead">Etapes: <br/> {{regime.etapes|raw}}</p>
+                    <p class="lead">Temps de repos: {{regime.temps_de_repos}} Minutes</p> -->
               
               
  
                       
                      
-                     </p>
+             
             </div>
 
             <div class="col-md-5">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="250" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+                   <img class="img_recette" style="height:300px" src="/uploads/{{regime.illustration}}"/>
             </div>
 
 
